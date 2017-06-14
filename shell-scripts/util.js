@@ -41,7 +41,6 @@ function globAsync(pattern, options) {
   });
 }
 
-
 module.exports = {
   str,
   run,

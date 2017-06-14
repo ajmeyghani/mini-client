@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-const shell = require('shelljs');
-const command = `./shell-scripts/buildcss.js && ./shell-scripts/copy-index.js`;
-if (shell.exec(command).code !== 0) {
-  shell.echo('Error: failed to build.');
-  shell.exit(1);
-}
+const {str, run} = require('./util');
+const buildSteps = [
+  `./shell-scripts/buildcss.js`,
+  `&&`,
+  `./shell-scripts/copy-index.js`
+];
+run(str(...buildSteps), 'Failed to build.');

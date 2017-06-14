@@ -1,6 +1,15 @@
-const shell = require('shelljs');
-const command = `./node_modules/.bin/node-sass --watch dev/css/base/base.scss -o dev/dev-dist/css --source-map true`;
-if (shell.exec(command).code !== 0) {
-  shell.echo('Error: failed to run the watch on dev/css');
-  shell.exit(1);
-}
+#!/usr/bin/env node
+const {run, str} = require('./util');
+
+const opts = {
+  input: `dev/css/base/base.scss`,
+  output: `dev/dev-dist/css`
+};
+
+const devCss = [
+  `./node_modules/.bin/node-sass`,
+   `--watch ${opts.input}`,
+   ` -o ${opts.output} --source-map true`
+];
+
+run(str(...devCss), 'Couldnt start the watch css');
