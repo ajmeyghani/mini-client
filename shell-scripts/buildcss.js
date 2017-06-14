@@ -1,13 +1,8 @@
 #!/usr/bin/env node
-const glob = require('glob');
 const Promise = require('bluebird');
 const fs = require('fs-extra');
-const util = require('./util');
-const str = util.str;
-const run = util.run;
-const uuid = util.uuid;
-const runAsync = util.runAsync;
-const globAsync = util.globAsync;
+const glob = require('glob');
+const {str, run, uuid, runAsync, globAsync} = require('./util');
 
 const opts = {
   input: 'dev/css/base/',
@@ -15,6 +10,7 @@ const opts = {
   uuid: uuid(),
 };
 
+/* css build helpers */
 function buildCss() {
   const build = str(
     './node_modules/.bin/node-sass',
