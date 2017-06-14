@@ -26,4 +26,6 @@ fs.ensureDir(opts.dist)
     `<link rel="stylesheet" href="/css/${distPath}">`
   );
   return fs.writeFile(opts.output, newContent);
-});
+})
+.then(() => console.log('done copying index.html'))
+.catch(e => console.log(e));

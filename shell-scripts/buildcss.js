@@ -61,5 +61,5 @@ fs.remove(opts.output)
   return new Promise((r) => r('not css file'));
 }))
 .then(ps => Promise.all(ps))
-.then(d => console.log('done'))
+.then(d => console.log('Done building css.'))
 .catch(r => console.log(e));
