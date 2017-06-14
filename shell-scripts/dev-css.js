@@ -1,13 +1,15 @@
 #!/usr/bin/env node
+const path = require('path');
 const {run, str} = require('./util');
 
 const opts = {
-  input: `dev/css/base/base.scss`,
-  output: `dev/dev-dist/css`
+  input: path.resolve(`dev/css/base/base.scss`),
+  output: path.resolve(`dev/dev-dist/css`),
+  nodeSass: path.resolve(`./node_modules/.bin/node-sass`),
 };
 
 const devCss = [
-  `./node_modules/.bin/node-sass`,
+  opts.nodeSass,
    `--watch ${opts.input}`,
    ` -o ${opts.output} --source-map true`
 ];

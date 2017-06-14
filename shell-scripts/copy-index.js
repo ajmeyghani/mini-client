@@ -1,11 +1,13 @@
 #!/usr/bin/env node
+const path = require('path');
 const fs = require('fs-extra');
 const Promise = require('bluebird');
 const {globAsync} = require('./util');
 
+
 const opts = {
-  input: 'dev/index.html',
-  output: 'dist/index.html',
+  input: path.resolve('dev/index.html'),
+  output: path.resolve('dist/index.html'),
   dist: 'dist',
 };
 

@@ -1,8 +1,5 @@
 #!/usr/bin/env node
+const path = require('path');
 const {str, run} = require('./util');
-const buildSteps = [
-  `./shell-scripts/buildcss.js`,
-  `&&`,
-  `./shell-scripts/copy-index.js`
-];
-run(str(...buildSteps), 'Failed to build.');
+run(path.resolve(`./shell-scripts/buildcss.js`), `Failed to build css`);
+run(path.resolve(`./shell-scripts/copy-index.js`), `Failed to copy.`);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const path = require('path');
 const {run} = require('./util');
-const startDevServer = `(cd dev && node dev-server.js)`;
-run(startDevServer, 'Couldnt start the dev server :(');
+const startDevServer = path.resolve(`dev/dev-server.js`);
+run('node ' + startDevServer, 'Couldnt start the dev server :(');

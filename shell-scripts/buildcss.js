@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const Promise = require('bluebird');
+const path = require('path');
 const fs = require('fs-extra');
 const glob = require('glob');
 const {str, run, uuid, runAsync, globAsync} = require('./util');
@@ -8,12 +9,13 @@ const opts = {
   input: 'dev/css/base/',
   output: 'dist/css/',
   uuid: uuid(),
+  nodeSass: path.resolve('./node_modules/.bin/node-sass'),
 };
 
 /* css build helpers */
 function buildCss() {
   const build = str(
-    './node_modules/.bin/node-sass',
+    opts.nodeSass,
     '--output-style compressed',
     '--source-map true',
     '--recursive',
