@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+
+const args = process.argv;
+const path = require('path');
+const colors = require('colors/safe');
+const {runTask} = require('./lib/common');
+
+const tasks = {
+  ['dev']: {
+    cmd: path.join(`./tasks/dev/dev.js`),
+    desc: `Starts the server and other dev related tasks.`
+  },
+  ['dev-server']: {
+    cmd: path.join(`./tasks/dev/dev-server.js`),
+    desc: `starts the dev server`
+  },
+  ['watch-css']: {
+    cmd: path.join(`./tasks/dev/watch-css.js`),
+    desc: `watch sass files and build on change and output to dev/dev-dist/css`
+  },
+  ['build-all']: {
+    cmd: path.join(`./tasks/prod/build-all.js`),
+    desc: `Build all the project.`
+  },
+  ['build-css']: {
+    cmd: path.join(`./tasks/prod/build-css.js`),
+    desc: `build css for production`
+  },
+
+};
+
+const taskName = args[2];
+
+if(!taskName) {
+
+  console.log(`
+    ${colors.yellow(`A simple cross platform task runner for Minimal Client.`)}
+
+    ${colors.cyan(`Usage:`)}
+
+      ./tasks/run <task name>
+
+    ${colors.cyan(`Example:`)}
+
+      ./tasks/run build-css
+
+    ${colors.cyan(`Available Tasks:`)}
+
+${Object.keys(tasks).map(v => {
+  return `\t${v}: ${tasks[v].desc}`;
+}).join('\n')}
+
+    `);
+} else {
+  runTask(tasks[taskName].cmd, `Failed to run the ${taskName} task.`);
+}

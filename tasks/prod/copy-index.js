@@ -2,12 +2,12 @@
 const path = require('path');
 const fs = require('fs-extra');
 const Promise = require('bluebird');
-const {globAsync} = require('./util');
+const {globAsync} = require('../lib/common');
 
 
 const opts = {
-  input: path.resolve('dev/index.html'),
-  output: path.resolve('dist/index.html'),
+  input: path.join('dev/index.html'),
+  output: path.join('dist/index.html'),
   dist: 'dist',
 };
 

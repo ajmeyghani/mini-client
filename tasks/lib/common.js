@@ -18,6 +18,13 @@ function run(cmdStr, err) {
   }
 }
 
+function runTask(cmdStr, err) {
+  if (shell.exec('node ' + cmdStr).code !== 0) {
+    shell.echo(err);
+    shell.exit(1);
+  }
+}
+
 function runAsync(cmdStr, err) {
   return new Promise((r, j) => {
     const code = shell.exec(cmdStr).code;
@@ -44,6 +51,7 @@ function globAsync(pattern, options) {
 module.exports = {
   str,
   run,
+  runTask,
   runAsync,
   uuid,
   globAsync,

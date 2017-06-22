@@ -3,13 +3,13 @@ const Promise = require('bluebird');
 const path = require('path');
 const fs = require('fs-extra');
 const glob = require('glob');
-const {str, run, uuid, runAsync, globAsync} = require('./util');
+const {str, run, uuid, runAsync, globAsync} = require('../lib/common');
 
 const opts = {
-  input: 'dev/css/base/',
-  output: 'dist/css/',
+  input: path.join('dev/css/base/'),
+  output: path.join('dist/css/'),
   uuid: uuid(),
-  nodeSass: path.resolve('./node_modules/.bin/node-sass'),
+  nodeSass: path.join('./node_modules/.bin/node-sass'),
 };
 
 /* css build helpers */
