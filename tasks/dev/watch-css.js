@@ -14,4 +14,5 @@ const devCss = [
    ` -o ${opts.output} --source-map true`
 ];
 
+run(`echo "Watching SCSS files"`);
 run(str(...devCss), `Couldn't start the watch to watch the scss files.`);

@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 app.use(express.static(path.join('./dev')));
-app.listen(9989, () => {
-  console.log('server running');
+const PORT = 9989;
+app.listen(PORT, () => {
+  console.log(`Dev server running at ${PORT}`);
 });

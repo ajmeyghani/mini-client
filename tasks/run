@@ -18,13 +18,9 @@ const tasks = {
     cmd: path.join(`./tasks/dev/watch-css.js`),
     desc: `watch sass files and build on change and output to dev/dev-dist/css`
   },
-  ['build-all']: {
-    cmd: path.join(`./tasks/prod/build-all.js`),
-    desc: `Build all the project.`
-  },
-  ['build-css']: {
-    cmd: path.join(`./tasks/prod/build-css.js`),
-    desc: `build css for production`
+  ['build']: {
+    cmd: path.join(`./tasks/prod/build.js`),
+    desc: `build the app for production and output to dist.`
   },
 
 };
