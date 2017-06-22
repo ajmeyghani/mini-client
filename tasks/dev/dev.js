@@ -5,7 +5,7 @@ const currently = path.join('./node_modules/.bin/concurrently');
 
 const dev = str(
   currently,
-  path.join('./tasks/dev/watch-css.js'),
-  path.join('./tasks/dev/dev-server.js')
+  `"node ${path.join(`./tasks/dev/watch-css.js`)}"`,
+  `"node ${path.join(`./tasks/dev/dev-server.js`)}"`
 );
 run(dev, `Couldn't start the dev server.`);
