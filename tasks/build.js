@@ -3,16 +3,17 @@ const Promise = require('bluebird');
 const path = require('path');
 const fs = require('fs-extra');
 const glob = require('glob');
-const {str, run, uuid, runAsync, globAsync} = require('../lib/common');
+const {str, run, uuid, runAsync, globAsync} = require('./lib/utils');
 
 const guid = uuid();
+const dist = 'dist';
 
 /*
  * scss -> css, replace uuid
  */
 const cssOpts = {
-  input: path.join('dev/css/main.scss'),
-  output: path.join('dist/css/'),
+  input: path.join('css/main.scss'),
+  output: path.join(`${dist}/css/`),
   nodeSass: path.join('./node_modules/.bin/node-sass'),
 };
 
@@ -69,16 +70,15 @@ fs.remove(cssOpts.output)
  * Copy index.html and replace the uuid values.
  */
  const htmlOpts = {
-   input: path.join('dev/index.html'),
-   output: path.join('dist/index.html'),
-   dist: 'dist',
+   input: path.join('index.html'),
+   output: path.join(`${dist}/index.html`),
  };
 
-fs.ensureDir(htmlOpts.dist)
+fs.ensureDir(path.join(dist))
 .then(() => fs.copy(htmlOpts.input, htmlOpts.output))
 .then(() => fs.readFile(htmlOpts.output, 'utf-8'))
 .then(content => new Promise(r => {
-  globAsync('dist/*/main*.css')
+  globAsync(`${dist}/*/main*.css`)
   .then(files => r({
     files: files,
     indexContent: content
@@ -86,12 +86,12 @@ fs.ensureDir(htmlOpts.dist)
 }))
 .then(fo => {
   const distPath = fo.files[0].split('/').pop();
-  console.log(distPath);
   const newContent = fo.indexContent.replace(
-    `<link rel="stylesheet" href="/dev-dist/css/main.css">`,
-    `<link rel="stylesheet" href="/css/${distPath}">`
+    `href="/dev-dist/css/main.css">`,
+    `href="/css/${distPath}">`
   ).replace(/#appVersion#/, guid.substr(0, 8));
-  return fs.writeFile(htmlOpts.output, newContent);
+  return newContent;
 })
+.then(newContent => fs.writeFile(htmlOpts.output, newContent))
 .then(() => console.log('Done copying index.html.'))
 .catch(e => console.log(e));

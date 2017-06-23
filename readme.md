@@ -4,7 +4,7 @@
 - `npm i`
 - `./tasks/run dev` [for windows users `node tasks\run dev`]
 
-Hack away the stuff in the `dev` directory and see the result at `http://localhost:9989`
+Hack away the stuff and see the result at `http://localhost:9989`
 
 ## Avaiable Tasks
 

@@ -48,6 +48,17 @@ function globAsync(pattern, options) {
   });
 }
 
+function isRoot() {
+  return new Promise((r, j) => {
+    glob('package.json', (err, package) => {
+      if (err) {
+        return j(err);
+      }
+      r(Boolean(package.length));
+    });
+  });
+}
+
 module.exports = {
   str,
   run,
@@ -55,4 +66,5 @@ module.exports = {
   runAsync,
   uuid,
   globAsync,
+  isRoot,
 };

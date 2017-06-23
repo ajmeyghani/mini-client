@@ -1,25 +1,24 @@
 #!/usr/bin/env node
-
 const args = process.argv;
 const path = require('path');
 const colors = require('colors/safe');
-const {runTask} = require('./lib/common');
+const {runTask} = require('./lib/utils');
 
 const tasks = {
   ['dev']: {
-    cmd: path.join(`./tasks/dev/dev.js`),
+    cmd: path.join(`tasks/dev.js`),
     desc: `Starts the server and other dev related tasks.`
   },
   ['dev-server']: {
-    cmd: path.join(`./tasks/dev/dev-server.js`),
-    desc: `starts the dev server`
+    cmd: path.join(`tasks/dev-server.js`),
+    desc: `starts the dev server.`
   },
   ['watch-css']: {
-    cmd: path.join(`./tasks/dev/watch-css.js`),
-    desc: `watch sass files and build on change and output to dev/dev-dist/css`
+    cmd: path.join(`tasks/watch-css.js`),
+    desc: `watch sass files and build on change and output to dev-dist/css`
   },
   ['build']: {
-    cmd: path.join(`./tasks/prod/build.js`),
+    cmd: path.join(`tasks/build.js`),
     desc: `build the app for production and output to dist.`
   },
 };
@@ -27,7 +26,6 @@ const tasks = {
 const taskName = args[2];
 
 if(!taskName) {
-
   console.log(`
     ${colors.yellow(`A simple cross platform task runner for Minimal Client.`)}
 

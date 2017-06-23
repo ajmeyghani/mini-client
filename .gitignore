@@ -31,5 +31,5 @@ node_modules
 
 # project specific
 # ignore the dev folder and the dist
-dev/dev-dist
+dev-dist
 dist
