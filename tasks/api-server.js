@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 app.get('/api', (req, res) => {
   res.json({
-    status: 'running'
+    status: 'mock server running...'
   })
 });
 const PORT = 8051;

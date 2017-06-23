@@ -9,6 +9,10 @@ const tasks = {
     cmd: path.join(`tasks/dev.js`),
     desc: `Starts the server and other dev related tasks.`
   },
+  ['dev-scripts']: {
+    cmd: path.join(`tasks/dev-scripts.js`),
+    desc: `Watch js files and output to dev-dist/js`
+  },
   ['api-server']: {
     cmd: path.join(`tasks/api-server.js`),
     desc: `Start the api server.`

@@ -2,6 +2,7 @@
 const Promise = require('bluebird');
 const path = require('path');
 const fs = require('fs-extra');
+const sass = require('node-sass');
 const glob = require('glob');
 const {str, run, uuid, runAsync, globAsync} = require('./lib/utils');
 
@@ -9,33 +10,41 @@ const guid = uuid();
 const smallGuid = guid.substr(0, 8);
 const dist = 'dist';
 
-/*
- * scss -> css, replace uuid
- */
+/* clean up */
+fs.removeSync(dist);
+fs.mkdirpSync(dist);
+
+/* scss  -> css */
 const cssOpts = {
   input: path.join('css/main.scss'),
-  output: path.join(`${dist}/css/`),
+  output: path.join(`${dist}/css/main${guid}.css`),
   nodeSass: path.join('./node_modules/.bin/node-sass'),
 };
 
-function buildCss() {
-  const build = str(
-    cssOpts.nodeSass,
-    '--output-style compressed',
-    '--source-map true',
-    '--recursive',
-    '--output', cssOpts.output,
-    cssOpts.input
-  );
-  return runAsync(build, 'Error building the css.');
-}
+fs.mkdirpSync(`${dist}/css`);
+sass.render({
+  file: cssOpts.input,
+  outputStyle: 'compressed',
+  outFile: cssOpts.output,
+  sourceMap: cssOpts.output.replace('.css', '.css.map'),
+  // sourceMapContents: true,
+  // sourceComments: true,
+  includePaths: ['node_modules', 'css']
+}, function(error, result) {
+  if (!error) {
+    fs.writeFile(cssOpts.output, result.css, function(err) {
+      if (!err) {
+        console.log('done');
+      }
+    });
+    fs.writeFile(cssOpts.output.replace('.css', '.css.map'), result.map, function(err) {
+      if (!err) {
+        console.log('done map');
+      }
+    });
+  }
+});
 
-fs.removeSync(dist);
-
-fs.mkdirp(dist)
-.then(() => buildCss())
-.then(d => console.log('Done converting scss to css.'))
-.catch(e => console.log(e));
 
 /*
  * Build javascript
