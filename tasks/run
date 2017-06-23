@@ -9,17 +9,21 @@ const tasks = {
     cmd: path.join(`tasks/dev.js`),
     desc: `Starts the server and other dev related tasks.`
   },
-  ['dev-server']: {
-    cmd: path.join(`tasks/dev-server.js`),
-    desc: `starts the dev server.`
+  ['api-server']: {
+    cmd: path.join(`tasks/api-server.js`),
+    desc: `Start the api server.`
+  },
+  ['sync']: {
+    cmd: path.join(`tasks/sync.js`),
+    desc: `Starts the dev browsersync server.`
   },
   ['watch-css']: {
     cmd: path.join(`tasks/watch-css.js`),
-    desc: `watch sass files and build on change and output to dev-dist/css`
+    desc: `Watch sass files and build on change and output to dev-dist/css`
   },
   ['build']: {
     cmd: path.join(`tasks/build.js`),
-    desc: `build the app for production and output to dist.`
+    desc: `Build the app for production and output to dist.`
   },
 };
 

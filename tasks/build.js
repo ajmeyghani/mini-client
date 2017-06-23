@@ -6,6 +6,7 @@ const glob = require('glob');
 const {str, run, uuid, runAsync, globAsync} = require('./lib/utils');
 
 const guid = uuid();
+const smallGuid = guid.substr(0, 8);
 const dist = 'dist';
 
 /*
@@ -29,42 +30,18 @@ function buildCss() {
   return runAsync(build, 'Error building the css.');
 }
 
-const move = (f, u) => {
-  return new Promise((r, j) => {
-    fs.move(f, u).then(x => r({
-      filepath: f,
-      hashedPath: u,
-      uuid: guid,
-      filename: f.split('/').pop(),
-      hashedFilename: u.split('/').pop()
-    })).catch(e => j(e));
-  });
-};
-const uuidFile = f => f.replace('.css', guid + '.css');
+fs.removeSync(dist);
 
-fs.remove(cssOpts.output)
-.then(() => fs.mkdirp(cssOpts.output))
+fs.mkdirp(dist)
 .then(() => buildCss())
-.then(() => globAsync(`${cssOpts.output}*`))
-.then(files => files.map(f => move(f, uuidFile(f))))
-.then(ps => Promise.all(ps))
-.then(rs => rs.map(fo => {
-  const isCssfile = /\.css$/.test(fo.filename);
-  if(isCssfile) {
-    return fs.readFile(fo.hashedPath, 'utf-8')
-    .then(content => {
-      const newContent = content.replace(
-        `sourceMappingURL=${fo.filename}.map`,
-        `sourceMappingURL=${fo.hashedFilename}.map`
-      );
-      return fs.writeFile(fo.hashedPath, newContent);
-    });
-  }
-  return new Promise((r) => r('not css file'));
-}))
-.then(ps => Promise.all(ps))
 .then(d => console.log('Done converting scss to css.'))
 .catch(e => console.log(e));
+
+/*
+ * Build javascript
+ */
+ const devScripts = `${path.join('./node_modules/.bin/rollup')} -c rollup.prod.js --output dist/js/main${guid}.js`;
+ run(devScripts);
 
 /*
  * Copy index.html and replace the uuid values.
@@ -74,22 +51,19 @@ fs.remove(cssOpts.output)
    output: path.join(`${dist}/index.html`),
  };
 
-fs.ensureDir(path.join(dist))
+fs.ensureDir(dist)
 .then(() => fs.copy(htmlOpts.input, htmlOpts.output))
 .then(() => fs.readFile(htmlOpts.output, 'utf-8'))
-.then(content => new Promise(r => {
-  globAsync(`${dist}/*/main*.css`)
-  .then(files => r({
-    files: files,
-    indexContent: content
-  }))
-}))
-.then(fo => {
-  const distPath = fo.files[0].split('/').pop();
-  const newContent = fo.indexContent.replace(
+.then(indexContent => {
+  const newContent = indexContent.replace(
     `href="/dev-dist/css/main.css">`,
-    `href="/css/${distPath}">`
-  ).replace(/#appVersion#/, guid.substr(0, 8));
+    `href="/css/main${guid}.css">`
+  )
+  .replace(
+    `<script src="/dev-dist/js/main.js"></script>`,
+    `<script src="/js/main${guid}.js"></script>`
+  )
+  .replace(/#appVersion#/, smallGuid);
   return newContent;
 })
 .then(newContent => fs.writeFile(htmlOpts.output, newContent))
