@@ -22,7 +22,6 @@ const tasks = {
     cmd: path.join(`./tasks/prod/build.js`),
     desc: `build the app for production and output to dist.`
   },
-
 };
 
 const taskName = args[2];
@@ -38,7 +37,7 @@ if(!taskName) {
 
     ${colors.cyan(`Example:`)}
 
-      ./tasks/run build-css
+      ./tasks/run build
 
     ${colors.cyan(`Available Tasks:`)}
 

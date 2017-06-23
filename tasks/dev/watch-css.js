@@ -3,7 +3,7 @@ const path = require('path');
 const {run, str} = require('../lib/common');
 
 const opts = {
-  input: path.join('dev/css/base/base.scss'),
+  input: path.join('dev/css/main.scss'),
   output: path.join('dev/dev-dist/css'),
   nodeSass: path.join('./node_modules/.bin/node-sass'),
 };
@@ -15,4 +15,5 @@ const devCss = [
 ];
 
 run(`echo "Watching SCSS files"`);
+run(`rm -rf dev/dev-dist/css/*`);
 run(str(...devCss), `Couldn't start the watch to watch the scss files.`);

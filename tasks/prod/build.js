@@ -7,13 +7,15 @@ const {str, run, uuid, runAsync, globAsync} = require('../lib/common');
 
 const guid = uuid();
 
+/*
+ * scss -> css, replace uuid
+ */
 const cssOpts = {
-  input: path.join('dev/css/base/'),
+  input: path.join('dev/css/main.scss'),
   output: path.join('dist/css/'),
   nodeSass: path.join('./node_modules/.bin/node-sass'),
 };
 
-/* css build helpers */
 function buildCss() {
   const build = str(
     cssOpts.nodeSass,
@@ -39,10 +41,6 @@ const move = (f, u) => {
 };
 const uuidFile = f => f.replace('.css', guid + '.css');
 
-/* replace file names file uuid values
-  and also replace the path inside the css
-  file to point to the right map file.
-*/
 fs.remove(cssOpts.output)
 .then(() => fs.mkdirp(cssOpts.output))
 .then(() => buildCss())
@@ -64,14 +62,12 @@ fs.remove(cssOpts.output)
   return new Promise((r) => r('not css file'));
 }))
 .then(ps => Promise.all(ps))
-.then(d => console.log('Done building css.'))
-.catch(r => console.log(e));
-
+.then(d => console.log('Done converting scss to css.'))
+.catch(e => console.log(e));
 
 /*
  * Copy index.html and replace the uuid values.
  */
-
  const htmlOpts = {
    input: path.join('dev/index.html'),
    output: path.join('dist/index.html'),
@@ -82,7 +78,7 @@ fs.ensureDir(htmlOpts.dist)
 .then(() => fs.copy(htmlOpts.input, htmlOpts.output))
 .then(() => fs.readFile(htmlOpts.output, 'utf-8'))
 .then(content => new Promise(r => {
-  globAsync('dist/css/*.css')
+  globAsync('dist/*/main*.css')
   .then(files => r({
     files: files,
     indexContent: content
@@ -90,11 +86,12 @@ fs.ensureDir(htmlOpts.dist)
 }))
 .then(fo => {
   const distPath = fo.files[0].split('/').pop();
+  console.log(distPath);
   const newContent = fo.indexContent.replace(
-    `<link rel="stylesheet" href="/dev-dist/css/base.css">`,
+    `<link rel="stylesheet" href="/dev-dist/css/main.css">`,
     `<link rel="stylesheet" href="/css/${distPath}">`
   ).replace(/#appVersion#/, guid.substr(0, 8));
   return fs.writeFile(htmlOpts.output, newContent);
 })
-.then(() => console.log('done copying index.html'))
+.then(() => console.log('Done copying index.html.'))
 .catch(e => console.log(e));
