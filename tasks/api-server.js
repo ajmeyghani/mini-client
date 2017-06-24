@@ -7,8 +7,4 @@ app.get('/api', (req, res) => {
     status: 'mock server running...'
   })
 });
-const PORT = 8051;
-
-app.listen(PORT, () => {
-  console.log(`API server running at ${PORT}`);
-});
+module.exports = app;

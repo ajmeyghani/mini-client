@@ -1,18 +1,13 @@
 #!/usr/bin/env node
-const bs = require('browser-sync').create();
+const path = require('path');
 const fs = require('fs-extra');
 const Gaze = require('gaze').Gaze;
-const sass = require('node-sass');
-const rollup = require('rollup');
-const buble = require('rollup-plugin-buble');
-const express = require('express');
-const path = require('path');
+const apiServer = require('./api-server');
+const bs = require('browser-sync').create();
 
 const devDist = 'dev-dist';
 
-/* clean up */
-fs.remove(devDist)
-.then(() => {
+function devAll() {
   /* start browser sync */
   bs.init({
     server: './',
@@ -25,14 +20,8 @@ fs.remove(devDist)
   bs.reload('*.html');
 
   /* start the api server */
-  const app = express();
-  app.get('/api', (req, res) => {
-    res.json({
-      status: 'mock server running...'
-    })
-  });
   const PORT = 8051;
-  app.listen(PORT, () => {
+  apiServer.listen(PORT, () => {
     console.log(`API server running at ${PORT}`);
   });
 
@@ -41,57 +30,23 @@ fs.remove(devDist)
     input: path.join('js/main.js'),
     output: path.join(`${devDist}/js/main.js`),
   };
-  var cache;
+  const compileJs = require('./compile-js')(jsOpts);
   const gazeJs = new Gaze('js/**/*.js');
-  gazeJs.on('all', (event, filepath) => {
-    rollup.rollup({
-      entry: jsOpts.input,
-      cache: cache,
-      plugins: [
-        buble()
-      ],
-    })
-    .then(bundle => {
-      cache = bundle;
-      bundle.write({
-        format: 'iife',
-        sourceMap: true,
-        dest: jsOpts.output
-      });
-    })
-    .then(() => console.log('Output js file'))
-    .catch(console.error);
-  });
+  gazeJs.on('all', compileJs);
 
-  /* watch sass files and output css */
+  /* watch sass, output css */
   const cssOpts = {
     input: path.join('css/main.scss'),
     output: path.join(`${devDist}/css/main.css`),
+    includes: ['node_modules', 'css'],
   };
-
+  const compileCss = require('./compile-css')(cssOpts);
   const gazeCss = new Gaze('css/**/*.scss');
-  fs.ensureDir(`${devDist}/css`)
-  .then(() => {
-    gazeCss.on('all', (event, filepath) => {
-      sass.render({
-        file: cssOpts.input,
-        outFile: cssOpts.output,
-        sourceMap: cssOpts.output.replace('.css', '.css.map'),
-        includePaths: ['node_modules', 'css'],
-      }, function(error, result) {
-        if (!error) {
-          fs.writeFile(cssOpts.output, result.css, function(err) {
-            if (!err) {
-              console.log('Done converting the SASS files.');
-            }
-          });
-          fs.writeFile(cssOpts.output.replace('.css', '.css.map'), result.map, function(err) {
-            if (!err) {
-              console.log('Done writing the SASS map file.');
-            }
-          });
-        }
-      });
-    });
-  });
-});
+  gazeCss.on('all', compileCss);
+}
+
+/* clean up and dev */
+fs.remove(devDist)
+.then(fs.ensureDir(`${devDist}/css`))
+.then(devAll)
+.catch(e => console.log(e));
