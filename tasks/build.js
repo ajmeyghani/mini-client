@@ -3,6 +3,9 @@ const Promise = require('bluebird');
 const path = require('path');
 const fs = require('fs-extra');
 const sass = require('node-sass');
+const rollup = require('rollup');
+const buble = require('rollup-plugin-buble');
+const uglify = require('rollup-plugin-uglify');
 const glob = require('glob');
 const {str, run, uuid, runAsync, globAsync} = require('./lib/utils');
 
@@ -34,23 +37,45 @@ sass.render({
   if (!error) {
     fs.writeFile(cssOpts.output, result.css, function(err) {
       if (!err) {
-        console.log('done');
+        console.log('Done converting the SASS files.');
       }
     });
     fs.writeFile(cssOpts.output.replace('.css', '.css.map'), result.map, function(err) {
       if (!err) {
-        console.log('done map');
+        console.log('Done writing the SASS map file.');
       }
     });
   }
 });
 
-
 /*
  * Build javascript
  */
- const devScripts = `${path.join('./node_modules/.bin/rollup')} -c rollup.prod.js --output dist/js/main${guid}.js`;
- run(devScripts);
+const jsOpts = {
+  input: path.join('js/main.js'),
+  output: path.join(`dist/js/main${guid}.js`),
+};
+
+var cache;
+
+rollup.rollup({
+  entry: jsOpts.input,
+  cache: cache,
+  plugins: [
+  buble(),
+  uglify()
+  ],
+})
+.then(bundle => {
+  cache = bundle;
+  bundle.write({
+    format: 'iife',
+    sourceMap: true,
+    dest: jsOpts.output
+  });
+})
+.then(() => console.log('Done building the js files.'))
+.catch(console.error);
 
 /*
  * Copy index.html and replace the uuid values.
