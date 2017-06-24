@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 
 module.exports = function(cssOpts, sassConfig, writeConfig) {
   return function() {
-    const defaultSassConfig = {
+    var defaultSassConfig = {
       file: cssOpts.input,
       outFile: cssOpts.output,
       sourceMap: cssOpts.output.replace('.css', '.css.map'),
@@ -23,6 +23,8 @@ module.exports = function(cssOpts, sassConfig, writeConfig) {
             console.log('Done writing the SASS map file.');
           }
         });
+      } else {
+        console.log(error);
       }
     });
   };

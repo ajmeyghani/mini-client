@@ -46,7 +46,6 @@ function devAll() {
 }
 
 /* clean up and dev */
-fs.remove(devDist)
-.then(fs.ensureDir(`${devDist}/css`))
-.then(devAll)
-.catch(e => console.log(e));
+fs.removeSync(devDist);
+fs.ensureDirSync(`${devDist}/css`);
+devAll();
