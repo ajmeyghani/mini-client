@@ -1,6 +1,6 @@
 class App {
   constructor() {
-    this.name = 'Minimal Client Setup1';
+    this.name = 'Minimal Client Setup';
   }
 }
 export default new App;

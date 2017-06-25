@@ -2,16 +2,15 @@
 
 - Clone the repo
 - `npm i` or `yarn install`
-- `./tasks/run dev` [for windows users `node tasks\run dev`]
+- `node tasks/dev` or `node tasks\dev` for windows users.
 
 Hack away the stuff and see the result at `http://localhost:9989`
 
-## Avaiable Tasks
+## Build
 
-To see the list of tasks, do `./tasks/run` [for windows users `node tasks\run`]
+To build the project do `node tasks/build` or `node tasks\build` for windows users.
 
 ## TODO
 
 - Add dockerfile.
-- Add rollup config
 - Add example for react.

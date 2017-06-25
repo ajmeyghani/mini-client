@@ -9,7 +9,7 @@ module.exports = function(jsConfig, rollupConfig, writeConfig) {
       cache: cache,
       plugins: [
         buble()
-      ],
+      ].concat(jsConfig.plugins || []),
     };
     var defaultWriteConfig = {
       format: 'iife',
@@ -25,7 +25,7 @@ module.exports = function(jsConfig, rollupConfig, writeConfig) {
         cache = bundle;
         bundle.write(writeConfig);
       })
-      .then(() => console.log('Output js file'))
+      .then(() => console.log('Finished building the js bundle.'))
       .catch(console.error);
   };
 };
