@@ -3,9 +3,9 @@ const path = require('path');
 const fs = require('fs-extra');
 const apiServer = require('./api-server');
 const uglify = require('rollup-plugin-uglify');
-const {uuid} = require('./lib/utils');
+const uuidV1 = require('uuid/v1');
 
-const guid = uuid();
+const guid = uuidV1().replace(/\-/g, '');
 const smallGuid = guid.substr(0, 8);
 
 const prodDist = 'dist';
