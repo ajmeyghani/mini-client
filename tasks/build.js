@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const apiServer = require('./api-server');
 const uglify = require('rollup-plugin-uglify');
-const {str, run, uuid, runAsync, globAsync} = require('./lib/utils');
+const {uuid} = require('./lib/utils');
 
 const guid = uuid();
 const smallGuid = guid.substr(0, 8);

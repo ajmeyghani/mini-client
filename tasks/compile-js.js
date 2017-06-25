@@ -1,5 +1,7 @@
 const rollup = require('rollup');
 const buble = require('rollup-plugin-buble');
+const cjs = require('rollup-plugin-commonjs');
+const resolve = require('rollup-plugin-node-resolve');
 
 module.exports = function(jsConfig, rollupConfig, writeConfig) {
   return function() {
@@ -8,7 +10,14 @@ module.exports = function(jsConfig, rollupConfig, writeConfig) {
       entry: jsConfig.input,
       cache: cache,
       plugins: [
-        buble()
+        buble(),
+        cjs({
+          exclude: 'node_modules/process-es6/**',
+        }),
+        resolve({
+          browser: true,
+          main: true
+        })
       ].concat(jsConfig.plugins || []),
     };
     var defaultWriteConfig = {
