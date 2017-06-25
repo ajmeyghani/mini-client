@@ -29,7 +29,6 @@
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-watch": "^4.0.0",
-    "shelljs": "^0.7.8",
     "uuid": "^3.0.1"
   }
 }
