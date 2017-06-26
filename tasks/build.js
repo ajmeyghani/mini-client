@@ -41,6 +41,12 @@ fs.ensureDirSync(`${PROD_DIST}/css`);
 }());
 
 (function() {
+  fs.copy('favicon.ico', path.join('dist/favicon.ico'))
+  .then(() => console.log('Copied favicon.ico'))
+  .catch(console.error);
+}());
+
+(function() {
   const htmlOpts = {
     input: path.join('index.html'),
     output: path.join(`${PROD_DIST}/index.html`),
