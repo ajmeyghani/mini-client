@@ -1,6 +1,3 @@
-class App {
-  constructor() {
-    this.name = 'Minimal Client Setup3';
-  }
-}
-export default new App;
+import angular from 'angular';
+const app = angular.module('app', []);
+export default app;

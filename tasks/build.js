@@ -18,7 +18,9 @@ fs.ensureDirSync(`${prodDist}/css`);
 require('./compile-js')({
   input: path.join('js/main.js'),
   output: path.join(`${prodDist}/js/main${guid}.js`),
-  plugins: [uglify()]
+  plugins: [uglify({
+    mangle: false
+  })]
 })();
 
 /* scss -> css */
@@ -28,6 +30,13 @@ compileCss = require('./compile-css')({
   includes: ['node_modules', 'css'],
   outputStyle: 'compressed',
 })();
+
+/*
+ * copy libs
+ */
+fs.copy(path.join('node_modules/angular'), path.join('dist/lib/angular'))
+.then(() => console.log('Copied lib files.'))
+.catch(console.error);
 
 /*
  * Copy index.html and replace the uuid values.
@@ -47,6 +56,10 @@ fs.copy(htmlOpts.input, htmlOpts.output)
   .replace(
     `<script src="/dev-dist/js/main.js"></script>`,
     `<script src="/js/main${guid}.js"></script>`
+  )
+  .replace(
+    `<script src="/node_modules/angular/angular.js"></script>`,
+    `<script src="/lib/angular/angular.min.js"></script>`
   )
   .replace(/#appVersion#/, smallGuid);
   return newContent;

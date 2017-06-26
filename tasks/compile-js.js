@@ -9,6 +9,7 @@ module.exports = function(jsConfig, rollupConfig, writeConfig) {
     var defaultRollupConfig = {
       entry: jsConfig.input,
       cache: cache,
+      external: ['angular'],
       plugins: [
         buble(),
         cjs({
