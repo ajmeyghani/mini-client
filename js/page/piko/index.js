@@ -1,7 +1,7 @@
 import template from './index.tpl.html';
 /**
- * [description]
- * @param  {[type]} app [description]
+ * A simple component
+ * @param  {Object} app Instance of an Angular module.
  */
 export default function(app) {
   app.component('piko', {

@@ -1,13 +1,18 @@
 import template from './index.tpl.html';
+import app from '../app';
+
+import piko from './piko';
+piko(app);
+
 /**
- * [description]
- * @param  {[type]} app [description]
+ * The page component
+ * @param  {Object} app an angular module object instance.
  */
 export default function(app) {
-  app.directive('page', function() {
-    return {
-      restrict: 'E',
-      template: template,
-    };
+  app.component('page', {
+    template: template,
+    bindings: {
+      title: '=',
+    },
   });
 }
