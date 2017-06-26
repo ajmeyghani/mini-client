@@ -1,5 +1,27 @@
+// override
 @import "./variables";
-@import "../node_modules/kube/src/kube";
+
+// kube
+@import "../node_modules/kube/src/_scss/variables";
+@import "../node_modules/kube/src/_scss/mixins";
+@import "../node_modules/kube/src/_scss/components/reset";
+@import "../node_modules/kube/src/_scss/components/colors";
+@import "../node_modules/kube/src/_scss/components/typography";
+@import "../node_modules/kube/src/_scss/components/grid";
+@import "../node_modules/kube/src/_scss/components/tables";
+@import "../node_modules/kube/src/_scss/components/forms";
+@import "../node_modules/kube/src/_scss/components/buttons";
+@import "../node_modules/kube/src/_scss/components/labels";
+@import "../node_modules/kube/src/_scss/components/icons";
+@import "../node_modules/kube/src/_scss/components/positioning";
+@import "../node_modules/kube/src/_scss/components/sizing";
+@import "../node_modules/kube/src/_scss/components/utils";
+@import "../node_modules/kube/src/_scss/components/print";
+@import "../node_modules/kube/src/_scss/components/animation";
+@import "../node_modules/kube/src/_scss/components/messages";
+@import "../node_modules/kube/src/_scss/components/tabs";
+
+// app
 @import "./layout";
 @import "./elements";
 @import "./components";

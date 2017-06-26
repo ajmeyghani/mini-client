@@ -4,12 +4,12 @@ const fs = require('fs-extra');
 const Gaze = require('gaze').Gaze;
 
 const DEV_DIST = 'dev-dist';
+const bs = require('browser-sync').create();
 
 fs.removeSync(DEV_DIST);
 fs.ensureDirSync(`${DEV_DIST}/css`);
 
 (function() {
-  const bs = require('browser-sync').create();
   bs.init({
     server: './',
     port: '9989',
@@ -42,6 +42,10 @@ fs.ensureDirSync(`${DEV_DIST}/css`);
   compileJs();
   const gazeJs = new Gaze(['js/**/*.js', 'js/**/*.html']);
   gazeJs.on('all', compileJs);
+  gazeJs.on('error', function(err) {
+    console.error('Error while watching JS files.');
+    bs.reload();
+  });
 }());
 
 (function() {
@@ -53,4 +57,8 @@ fs.ensureDirSync(`${DEV_DIST}/css`);
   compileCss();
   const gazeCss = new Gaze('css/**/*.scss');
   gazeCss.on('all', compileCss);
+  gazeCss.on('error', function(err) {
+    console.error('Error while watching CSS files.');
+    bs.reload();
+  });
 }());
