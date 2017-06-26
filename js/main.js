@@ -1,4 +1,8 @@
 import app from './app';
-app.controller('MainCtrl', function($scope) {
-  $scope.appName = 'Mini Client';
+import template from './happy.tpl.html';
+app.directive('happy', function() {
+  return {
+    restrict: 'E',
+    template: template,
+  };
 });

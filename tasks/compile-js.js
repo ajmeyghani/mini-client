@@ -1,7 +1,7 @@
 const rollup = require('rollup');
-const buble = require('rollup-plugin-buble');
 const cjs = require('rollup-plugin-commonjs');
 const resolve = require('rollup-plugin-node-resolve');
+const eslint = require('rollup-plugin-eslint');
 
 module.exports = function(jsConfig, rollupConfig, writeConfig) {
   return function() {
@@ -11,13 +11,15 @@ module.exports = function(jsConfig, rollupConfig, writeConfig) {
       cache: cache,
       external: ['angular'],
       plugins: [
-        buble(),
         cjs({
           exclude: 'node_modules/process-es6/**',
         }),
         resolve({
           browser: true,
           main: true
+        }),
+        eslint({
+          exclude: ['**/*.html']
         })
       ].concat(jsConfig.plugins || []),
     };

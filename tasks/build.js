@@ -1,69 +1,69 @@
 #!/usr/bin/env node
 const path = require('path');
 const fs = require('fs-extra');
-const apiServer = require('./api-server');
-const uglify = require('rollup-plugin-uglify');
-const uuidV1 = require('uuid/v1');
-
-const guid = uuidV1().replace(/\-/g, '');
+const guid = require('uuid/v1')().replace(/\-/g, '');
 const smallGuid = guid.substr(0, 8);
 
-const prodDist = 'dist';
+const PROD_DIST = 'dist';
 
-/* clean up and dev */
-fs.removeSync(prodDist);
-fs.ensureDirSync(`${prodDist}/css`);
+fs.removeSync(PROD_DIST);
+fs.ensureDirSync(`${PROD_DIST}/css`);
 
-/* build js */
-require('./compile-js')({
-  input: path.join('js/main.js'),
-  output: path.join(`${prodDist}/js/main${guid}.js`),
-  plugins: [uglify({
-    mangle: false
-  })]
-})();
+(function() {
+  require('./compile-js')({
+    input: path.join('js/main.js'),
+    output: path.join(`${PROD_DIST}/js/main${guid}.js`),
+    plugins: [
+      require('rollup-plugin-html')({
+        include: 'js/**/*.html'
+      }),
+      require('rollup-plugin-buble')(),
+      require('rollup-plugin-uglify')({
+        mangle: false
+      })
+    ]
+  })();
+}());
 
-/* scss -> css */
-compileCss = require('./compile-css')({
-  input: path.join('css/main.scss'),
-  output: path.join(`${prodDist}/css/main${guid}.css`),
-  includes: ['node_modules', 'css'],
-  outputStyle: 'compressed',
-})();
+(function() {
+  compileCss = require('./compile-css')({
+    input: path.join('css/main.scss'),
+    output: path.join(`${PROD_DIST}/css/main${guid}.css`),
+    includes: ['node_modules', 'css'],
+    outputStyle: 'compressed',
+  })();
+}());
 
-/*
- * copy libs
- */
-fs.copy(path.join('node_modules/angular'), path.join('dist/lib/angular'))
-.then(() => console.log('Copied lib files.'))
-.catch(console.error);
+(function() {
+  fs.copy(path.join('node_modules/angular'), path.join('dist/lib/angular'))
+  .then(() => console.log('Copied lib files.'))
+  .catch(console.error);
+}());
 
-/*
- * Copy index.html and replace the uuid values.
- */
- const htmlOpts = {
-   input: path.join('index.html'),
-   output: path.join(`${prodDist}/index.html`),
- };
-
-fs.copy(htmlOpts.input, htmlOpts.output)
-.then(() => fs.readFile(htmlOpts.output, 'utf-8'))
-.then(indexContent => {
-  const newContent = indexContent.replace(
-    `href="/dev-dist/css/main.css">`,
-    `href="/css/main${guid}.css">`
-  )
-  .replace(
-    `<script src="/dev-dist/js/main.js"></script>`,
-    `<script src="/js/main${guid}.js"></script>`
-  )
-  .replace(
-    `<script src="/node_modules/angular/angular.js"></script>`,
-    `<script src="/lib/angular/angular.min.js"></script>`
-  )
-  .replace(/#appVersion#/, smallGuid);
-  return newContent;
-})
-.then(newContent => fs.writeFile(htmlOpts.output, newContent))
-.then(() => console.log('Done copying index.html.'))
-.catch(e => console.log(e));
+(function() {
+  const htmlOpts = {
+    input: path.join('index.html'),
+    output: path.join(`${PROD_DIST}/index.html`),
+  };
+  fs.copy(htmlOpts.input, htmlOpts.output)
+  .then(() => fs.readFile(htmlOpts.output, 'utf-8'))
+  .then(indexContent => {
+    const newContent = indexContent.replace(
+      `/dev-dist/css/main.css`,
+      `/css/main${guid}.css`
+    )
+    .replace(
+      `/dev-dist/js/main.js`,
+      `/js/main${guid}.js`
+    )
+    .replace(
+      `/node_modules/angular/angular.js`,
+      `/lib/angular/angular.min.js`
+    )
+    .replace(/#appVersion#/, smallGuid);
+    return newContent;
+  })
+  .then(newContent => fs.writeFile(htmlOpts.output, newContent))
+  .then(() => console.log('Done copying index.html.'))
+  .catch(e => console.log(e));
+}());
