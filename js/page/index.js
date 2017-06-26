@@ -4,7 +4,7 @@ import template from './index.tpl.html';
  * @param  {[type]} app [description]
  */
 export default function(app) {
-  app.directive('happy', function() {
+  app.directive('page', function() {
     return {
       restrict: 'E',
       template: template,
