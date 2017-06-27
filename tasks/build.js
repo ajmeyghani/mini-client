@@ -66,7 +66,8 @@ fs.ensureDirSync(`${PROD_DIST}/css`);
       `/node_modules/angular/angular.js`,
       `/lib/angular/angular.min.js`
     )
-    .replace(/#appVersion#/, smallGuid);
+    .replace(`<devinfo></devinfo>`, '')
+    .replace(/#buildVersion#/, smallGuid);
     return newContent;
   })
   .then(newContent => fs.writeFile(htmlOpts.output, newContent))

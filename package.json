@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.4",
+    "bowser": "^1.7.0",
     "kube": "git+ssh://git@github.com/imperavi/kube.git"
   },
   "devDependencies": {
