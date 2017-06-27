@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/dev-dist/css/main.css">
   <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="/dev-dist/js/main.js"></script>
 </head>
 <body>
-  <page title="'Mini Client'"></page>
-  <devinfo></devinfo>
+  <a ui-sref="hello" ui-sref-active="active">Hello</a>
+      <a ui-sref="about" ui-sref-active="active">About</a>
+      <ui-view></ui-view>
   <p class="smaller text-center">Build: #buildVersion#</p>
 </body>
 </html>
