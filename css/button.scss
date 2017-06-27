@@ -1,0 +1,186 @@
+// variables
+$button-border-radius: 0px;
+$text-font-family: inherit;
+$button-font-size: 15px !default;
+$button-font-size-smaller: $button-font-size - 4px !default;
+$button-font-size-small: $button-font-size - 2px !default;
+$button-font-size-big: $button-font-size + 2px !default;
+$button-font-size-large: $button-font-size + 4px !default;
+$color-button-primary: #1c86f2 !default;
+$color-button-primary-text: #fff !default;
+$color-button-secondary: #313439 !default;
+$color-button-secondary-text: #fff !default;
+$button-height: 40px !default;
+$button-height-small: 36px !default;
+$button-height-big: 48px !default;
+$button-height-large: 56px !default;
+$button-padding-tb: 8px !default;
+$button-padding-rl: 20px !default;
+$button-padding-small-tb: 6px !default;
+$button-padding-small-rl: 20px !default;
+$button-padding-big-tb: 13px !default;
+$button-padding-big-rl: 24px !default;
+$button-padding-large-tb: 20px !default;
+$button-padding-large-rl: 36px !default;
+$button-font-weight: 500 !default;
+$button-base-line: 20px !default;
+
+// mixin
+@mixin button($color-text, $color-back)
+{
+  color: $color-text;
+  background-color: $color-back;
+
+  &:hover {
+      color: $color-text;
+      background-color: lighten($color-back, 20%);
+  }
+    &:disabled,
+    &.disabled {
+      color: rgba($color-text, .7);
+      background-color: rgba($color-back, .7);
+    }
+    &.outline {
+        background: none;
+        color: $color-back;
+        border-color: $color-back;
+
+        &:hover {
+            color: rgba($color-back, .6);
+            border-color: rgba($color-back, .5);
+        }
+        &:disabled,
+        &.disabled {
+            background: none;
+          color: rgba($color-back, .7);
+          border-color: rgba($color-back, .5);
+        }
+    }
+}
+
+// styles
+button,
+.button {
+  font-family: $text-font-family;
+  font-size: $button-font-size;
+  color: $color-button-primary-text;
+  background-color: $color-button-primary;
+  border-radius: $button-border-radius;
+  min-height: $button-height;
+  padding: $button-padding-tb $button-padding-rl;
+  font-weight: $button-font-weight;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  line-height: $button-base-line;
+  border: 1px solid transparent;
+  vertical-align: middle;
+  -webkit-appearance: none;
+
+  & i {
+        position: relative;
+        top: 1px;
+        margin: 0 2px;
+  }
+}
+input[type="submit"] {
+    width: auto;
+}
+button:hover,
+.button:hover {
+    outline: none;
+  text-decoration: none;
+  color: $color-button-primary-text;
+  background-color: lighten($color-button-primary, 10%);
+}
+
+// Disabled
+.button:disabled,
+.button.disabled {
+  cursor: default;
+  font-style: normal;
+  color: rgba($color-button-primary-text, .7);
+  background-color: rgba($color-button-primary, .7);
+}
+
+// Size
+.button.small {
+    font-size: $button-font-size-small;
+    min-height: $button-height-small;
+    padding: $button-padding-small-tb $button-padding-small-rl;
+    border-radius: $button-border-radius;
+}
+.button.big {
+    font-size: $button-font-size-big;
+    min-height: $button-height-big;
+    padding: $button-padding-big-tb $button-padding-big-rl;
+    border-radius: $button-border-radius;
+}
+.button.large {
+    font-size: $button-font-size-large;
+    min-height: $button-height-large;
+    padding: $button-padding-large-tb $button-padding-large-rl;
+    border-radius: $button-border-radius;
+}
+
+
+// Outline
+.button.outline {
+    background: none;
+    border-width: 2px;
+    border-color: $color-button-primary;
+    color: $color-button-primary;
+
+    &:hover {
+        background: none;
+        color: rgba($color-button-primary, .6);
+        border-color: rgba($color-button-primary, .5);
+    }
+    &:disabled,
+    &.disabled {
+        background: none;
+        color: rgba($color-button-primary, .7);
+      border-color: rgba($color-button-primary, .5);
+    }
+}
+
+// White
+.button.inverted {
+    @include button(#000, #fff);
+
+    &:hover {
+        opacity: .7;
+    }
+}
+
+// Round
+.button.round {
+    border-radius: $button-height-large;
+}
+
+// Raised
+.button.raised {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+
+// Upper
+.button.upper {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: $button-font-size-small;
+
+    &.small {
+        font-size: $button-font-size-smaller;
+    }
+    &.big {
+        font-size: $button-font-size-small;
+    }
+    &.large {
+        font-size: $button-font-size;
+    }
+}
+
+// Secondary
+.button.secondary {
+  @include button($color-button-secondary-text, $color-button-secondary);
+}

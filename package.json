@@ -13,7 +13,8 @@
   "dependencies": {
     "angular": "^1.6.4",
     "bowser": "^1.7.0",
-    "kube": "git+ssh://git@github.com/imperavi/kube.git"
+    "kube": "git+ssh://git@github.com/imperavi/kube.git",
+    "skeleton-scss": "^2.0.4"
   },
   "devDependencies": {
     "bluebird": "^3.5.0",

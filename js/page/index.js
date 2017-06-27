@@ -1,8 +1,4 @@
 import template from './index.tpl.html';
-import app from 'app';
-
-import piko from './piko';
-piko(app);
 
 /**
  * The page component

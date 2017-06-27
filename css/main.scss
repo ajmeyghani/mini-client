@@ -1,26 +1,41 @@
-// override
-@import "./variables";
+@import "./super-reset";
+@import "./print";
+// @import "./button";
+
+/*
+ The goal is to create a common interface to make it easy
+ for swapping styles. If you want to apply styles to inputs
+ and forms, you should be able to swap out styles. If you want
+ to style buttons differently you should be able to swap them out
+ without a lot of headache. This requires to have an interface between
+ the actual styles and the class names. The class names would have to
+ stay the same. The implementaitons however will obviously have to change.
+
+ It should also be framework agnostic. The idea is simple, the components
+ are in plain html and css. How they are abstracted doesnt matter, React, angluar, etc.
+
+ */
 
 // kube
-@import "../node_modules/kube/src/_scss/variables";
-@import "../node_modules/kube/src/_scss/mixins";
-@import "../node_modules/kube/src/_scss/components/reset";
-@import "../node_modules/kube/src/_scss/components/colors";
-@import "../node_modules/kube/src/_scss/components/typography";
-@import "../node_modules/kube/src/_scss/components/grid";
-@import "../node_modules/kube/src/_scss/components/tables";
-@import "../node_modules/kube/src/_scss/components/forms";
-@import "../node_modules/kube/src/_scss/components/buttons";
-@import "../node_modules/kube/src/_scss/components/labels";
-@import "../node_modules/kube/src/_scss/components/icons";
-@import "../node_modules/kube/src/_scss/components/positioning";
-@import "../node_modules/kube/src/_scss/components/sizing";
-@import "../node_modules/kube/src/_scss/components/utils";
-@import "../node_modules/kube/src/_scss/components/print";
-@import "../node_modules/kube/src/_scss/components/animation";
-@import "../node_modules/kube/src/_scss/components/messages";
+// @import "../node_modules/kube/src/_scss/variables";
+// @import "../node_modules/kube/src/_scss/mixins";
+
+// @import "../node_modules/kube/src/_scss/components/colors";
+// @import "../node_modules/kube/src/_scss/components/typography";
+// @import "../node_modules/kube/src/_scss/components/grid";
+// @import "../node_modules/kube/src/_scss/components/tables";
+// @import "../node_modules/kube/src/_scss/components/forms";
+// @import "../node_modules/kube/src/_scss/components/buttons";
+// @import "../node_modules/kube/src/_scss/components/labels";
+// @import "../node_modules/kube/src/_scss/components/icons";
+// @import "../node_modules/kube/src/_scss/components/positioning";
+// @import "../node_modules/kube/src/_scss/components/sizing";
+// @import "../node_modules/kube/src/_scss/components/utils";
+// @import "../node_modules/kube/src/_scss/components/print";
+// @import "../node_modules/kube/src/_scss/components/animation";
+// @import "../node_modules/kube/src/_scss/components/messages";
 
 // app
-@import "./layout";
-@import "./elements";
-@import "./components";
+// @import "./layout";
+// @import "./elements";
+// @import "./components";

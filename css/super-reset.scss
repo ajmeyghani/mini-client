@@ -1,0 +1,173 @@
+/*
+ * Combination of normalize.css, kube reset and Eric Meyer reset reloaded.
+ * This is a very aggressive reset intended to create a plain field
+ * for developing components for modern browsers. It resets pretty much everything.
+ */
+
+$base-font-size: 16px;
+$base-font-family: sans-serif;
+$base-box-padding: 0;
+$base-box-margin: 0;
+
+* {
+  box-sizing: border-box;
+  margin: $base-box-margin;
+  padding: $base-box-padding;
+  outline: 0;
+  border: 0;
+
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  line-height: 1;
+
+  list-style: none;
+
+  background-repeat: no-repeat;
+
+  vertical-align: baseline;
+  position: relative;
+  z-index: 0;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+:focus {
+  outline: 0;
+}
+
+html {
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: #fff;
+}
+
+a {
+  background-color: transparent;
+}
+a {
+  &:active {
+    outline: 0;
+  }
+  &:hover {
+    outline: 0;
+  }
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+small {
+  font-size: 80%;
+}
+
+img,
+video,
+audio {
+  max-width: 100%;
+}
+img,
+video {
+  height: auto;
+}
+svg {
+  max-height: 100%;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+iframe {
+  border: none;
+}
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+//
+// Fix the cursor style for Chrome's increment/decrement buttons. For certain
+// `font-size` values of the `input`, it causes the cursor style of the
+// decrement button to change from `default` to `text`.
+//
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+//
+// 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+// 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+//
+
+input[type="search"] {
+  -webkit-appearance: textfield; // 1
+  box-sizing: content-box; //2
+}
+
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+caption, th, td {
+  text-align: left;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+pre {
+  overflow: auto;
+}
