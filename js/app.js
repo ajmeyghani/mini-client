@@ -2,22 +2,28 @@ import angular from 'angular';
 
 const app = angular.module('app', ['ui.router']);
 
-app.config(($stateProvider) => {
-  const helloState = {
-    name: 'hello',
-    url: '/hello',
-    template: `<page title="'Mini Client'"></page>`,
+app.config(($stateProvider, $locationProvider) => {
+  $locationProvider.html5Mode(true);
+
+  const homeState = {
+    name: 'home',
+    url: '/',
+    component: 'home',
+    resolve: {
+      title: function(dataService, $transition$) {
+        return dataService.getData();
+      },
+    },
   };
 
-  const aboutState = {
-    name: 'about',
-    url: '/about',
-    template: '<h3>Its the UI-Router hello world app!</h3>',
+  const buttons = {
+    name: 'buttons',
+    url: '/buttons',
+    template: '<h1>This is a button</h1><button>Hello</button>',
   };
 
-  $stateProvider.state(helloState);
-  $stateProvider.state(aboutState);
+  $stateProvider.state(homeState);
+  $stateProvider.state(buttons);
 });
-
 
 export default app;

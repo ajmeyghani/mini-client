@@ -16,7 +16,10 @@ fs.ensureDirSync(`${DEV_DIST}/css`);
     logLevel: 'info',
     notify: false,
     open: false,
-    files: ['index.html', `${DEV_DIST}/**/*`]
+    files: ['index.html', `${DEV_DIST}/**/*`],
+    middleware:[
+      require('connect-history-api-fallback')()
+    ]
   });
   bs.reload('*.html');
 }());

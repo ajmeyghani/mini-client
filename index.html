@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <base href="/">
   <title>Mini Client</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,9 +11,9 @@
   <script src="/dev-dist/js/main.js"></script>
 </head>
 <body>
-  <a ui-sref="hello" ui-sref-active="active">Hello</a>
-      <a ui-sref="about" ui-sref-active="active">About</a>
-      <ui-view></ui-view>
+  <a ui-sref="home" ui-sref-active="active">Home</a>
+  <a ui-sref="buttons" ui-sref-active="active">Buttons</a>
+  <ui-view></ui-view>
   <p class="smaller text-center">Build: #buildVersion#</p>
 </body>
 </html>

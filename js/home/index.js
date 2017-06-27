@@ -5,10 +5,15 @@ import template from './index.tpl.html';
  * @param  {Object} app an angular module object instance.
  */
 export default function(app) {
-  app.component('page', {
+  app.component('home', {
     template: template,
     bindings: {
-      title: '=',
+      title: '<',
+    },
+    controller() {
+      this.$onInit = function() {
+        console.log('init.');
+      };
     },
   });
 }
