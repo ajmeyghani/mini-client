@@ -1,10 +1,10 @@
 import angular from 'angular';
-import app from './app';
+import app from 'app';
 
-import page from './page';
+import page from 'page';
 page(app);
 
-import devinfo from './devinfo';
+import devinfo from 'devinfo';
 devinfo(app);
 
 angular.element(document).ready(() => {

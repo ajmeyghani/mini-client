@@ -16,7 +16,8 @@ module.exports = function(jsConfig, rollupConfig, writeConfig) {
         }),
         resolve({
           browser: true,
-          main: true
+          main: true,
+          customResolveOptions: jsConfig.customResolveOptions || {},
         }),
         eslint({
           exclude: ['**/*.html']

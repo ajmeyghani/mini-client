@@ -37,7 +37,10 @@ fs.ensureDirSync(`${DEV_DIST}/css`);
         include: 'js/**/*.html'
       }),
       require('rollup-plugin-buble')()
-    ]
+    ],
+    customResolveOptions: {
+      moduleDirectory: [path.join('js'), path.join('node_modules')]
+    }
   });
   compileJs();
   const gazeJs = new Gaze(['js/**/*.js', 'js/**/*.html']);

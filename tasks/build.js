@@ -21,7 +21,10 @@ fs.ensureDirSync(`${PROD_DIST}/css`);
       require('rollup-plugin-uglify')({
         mangle: false
       })
-    ]
+    ],
+    customResolveOptions: {
+      moduleDirectory: [path.join('js'), path.join('node_modules')]
+    }
   })();
 }());
 
