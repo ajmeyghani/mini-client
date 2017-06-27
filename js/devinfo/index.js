@@ -7,11 +7,8 @@ import template from './index.tpl.html';
 export default function(app) {
   app.component('devinfo', {
     template: template,
-    bindings: {
-      name: '=',
-    },
-    controller: function() {
-      this.explorer = `Running ${bowser.name}, version ${bowser.version}`;
+    controller() {
+      this.explorer = `Runnig ${bowser.name}, version ${bowser.version}`;
     },
   });
 }
