@@ -22,8 +22,23 @@ app.config(($stateProvider, $locationProvider) => {
     component: 'buttons',
   };
 
+  const tables = {
+    name: 'tables',
+    url: '/tables',
+    component: 'tables',
+  };
+
+  const grid = {
+    name: 'grid',
+    url: '/grid',
+    component: 'grid',
+  };
+
+
   $stateProvider.state(homeState);
   $stateProvider.state(buttons);
+  $stateProvider.state(tables);
+  $stateProvider.state(grid);
 });
 
 export default app;

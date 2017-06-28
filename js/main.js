@@ -10,6 +10,12 @@ home(app);
 import buttons from 'buttons';
 buttons(app);
 
+import tables from 'tables';
+tables(app);
+
+import grid from 'grid';
+grid(app);
+
 import devinfo from 'devinfo';
 devinfo(app);
 

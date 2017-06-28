@@ -1,0 +1,20 @@
+@import '../node_modules/min/sass/button';
+.e_btn {
+  border-radius: 0;
+  @extend .btn;
+}
+.e_btn.-primary {
+  @extend .btn-a;
+}
+
+.e_btn.-secondary {
+  @extend .btn-b;
+}
+
+.e_btn.-tertiary {
+  @extend .btn-c;
+}
+
+.e_btn.-small {
+  @extend .btn-sm;
+}

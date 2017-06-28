@@ -15,6 +15,7 @@
     "angular": "^1.6.4",
     "bowser": "^1.7.0",
     "kube": "git+ssh://git@github.com/imperavi/kube.git",
+    "min": "git+ssh://git@github.com/aminmeyghani/min.git",
     "skeleton-scss": "^2.0.4"
   },
   "devDependencies": {

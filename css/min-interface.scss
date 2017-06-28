@@ -1,0 +1,18 @@
+.smooth {
+  transition: all .2s;
+}
+%no-underline {
+  text-decoration: none;
+}
+%txt-large {
+  font-size: 2em;
+}
+%shared-font-size {
+  font-size: 14px;
+}
+$import-buttons: true;
+$import-tables: true;
+$import-grid: true;
+@import '../node_modules/min/sass/__var-lib.scss';
+@import '../node_modules/min/sass/_grid.scss';
+
