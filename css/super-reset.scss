@@ -36,16 +36,13 @@ $base-box-margin: 0;
 
   -webkit-overflow-scrolling: touch;
 }
-
 *:before,
 *:after {
   box-sizing: inherit;
 }
-
 :focus {
   outline: 0;
 }
-
 html {
   font-size: $base-font-size;
   font-family: $base-font-family;
@@ -55,7 +52,6 @@ html {
 body {
   background: #fff;
 }
-
 a {
   background-color: transparent;
 }
@@ -67,7 +63,6 @@ a {
     outline: 0;
   }
 }
-
 sub,
 sup {
   font-size: 75%;
@@ -75,19 +70,15 @@ sup {
   position: relative;
   vertical-align: baseline;
 }
-
 sup {
   top: -0.5em;
 }
-
 sub {
   bottom: -0.25em;
 }
-
 small {
   font-size: 80%;
 }
-
 img,
 video,
 audio {
@@ -110,7 +101,6 @@ iframe {
   border: 0;
   padding: 0;
 }
-
 input[type="search"] {
   -webkit-appearance: textfield;
 }
@@ -118,43 +108,25 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
-
-//
-// Fix the cursor style for Chrome's increment/decrement buttons. For certain
-// `font-size` values of the `input`, it causes the cursor style of the
-// decrement button to change from `default` to `text`.
-//
-
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
-
-//
-// 1. Address `appearance` set to `searchfield` in Safari and Chrome.
-// 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
-//
-
 input[type="search"] {
   -webkit-appearance: textfield; // 1
   box-sizing: content-box; //2
 }
-
-
 audio:not([controls]) {
   display: none;
   height: 0;
 }
-
 caption, th, td {
   text-align: left;
 }
-
 table {
   border-collapse: separate;
   border-spacing: 1px;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: "";
@@ -162,12 +134,10 @@ q:before, q:after {
 blockquote, q {
   quotes: "" "";
 }
-
 hr {
   box-sizing: content-box;
   height: 0;
 }
-
 pre {
   overflow: auto;
 }

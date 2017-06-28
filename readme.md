@@ -19,7 +19,7 @@ To build the project do `node tasks/build` or `node tasks\build` for windows use
 
 ## Line Ending
 
-Make sure to always use LF for line endings:
+If you have line ending issues, make sure to set the git configs:
 
 ```
 git config core.eol lf

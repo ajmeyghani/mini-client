@@ -1,5 +1,5 @@
 @import '../../node_modules/spectre-scss/scss/src/buttons.scss';
-.e_btn{
+button, .e_btn{
   @extend .btn;
   border-radius: 0;
 }
