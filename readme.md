@@ -1,5 +1,12 @@
 # Minimal Client
 
+## Requirements
+
+- Node latest version
+- Git version >= 2
+
+## Getting Started
+
 - Clone the repo
 - `npm i` or `yarn install`
 - `node tasks/dev` or `node tasks\dev` for windows users.
