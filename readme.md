@@ -4,7 +4,15 @@
 - `npm i` or `yarn install`
 - `node tasks/dev` or `node tasks\dev` for windows users.
 
-Hack away the stuff and see the result at `http://localhost:9989`
+Hack away the stuff and see the result at `http://localhost:9989`.
+
+A note about line endings: make sure that you run the following to tell git not to use CRLF:
+
+```
+git config core.autocrlf false
+```
+
+Always use `LF` line ending.
 
 ## Build
 
