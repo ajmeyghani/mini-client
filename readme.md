@@ -6,10 +6,11 @@
 
 Hack away the stuff and see the result at `http://localhost:9989`.
 
-A note about line endings: make sure that you run the following to tell git not to use CRLF:
+Make sure to always use LF for line endings:
 
 ```
-git config core.autocrlf false
+$ git config core.eol lf
+$ git config core.autocrlf input
 ```
 
 Always use `LF` line ending.
