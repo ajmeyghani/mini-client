@@ -19,7 +19,7 @@ app.config(($stateProvider, $locationProvider) => {
   const buttons = {
     name: 'buttons',
     url: '/buttons',
-    template: '<h1>This is a button</h1><button>Hello</button>',
+    component: 'buttons',
   };
 
   $stateProvider.state(homeState);

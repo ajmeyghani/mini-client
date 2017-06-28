@@ -1,6 +1,38 @@
+@mixin clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+@import "./variables";
 @import "./super-reset";
 @import "./print";
-@import "./button";
+@import "./button2";
+// @import "./button";
+@import "./components";
+
+.clearfix {
+  @include clearfix();
+}
+
+.title1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: $global-padding;
+}
+.content {
+  padding: 0 15px;
+}
+
+small {
+  font-size: 0.8rem;
+}
+
+.build-info {
+  font-size: 0.8rem;
+  margin-top: $global-padding;
+}
 
 /*
  The goal is to create a common interface to make it easy

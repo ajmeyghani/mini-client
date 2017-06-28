@@ -7,6 +7,9 @@ dataService(app);
 import home from 'home';
 home(app);
 
+import buttons from 'buttons';
+buttons(app);
+
 import devinfo from 'devinfo';
 devinfo(app);
 
