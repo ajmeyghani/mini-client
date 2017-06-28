@@ -19,7 +19,13 @@
     }
   }
 }
-.build-info {
+.m_build-info {
   font-size: 0.8rem;
   margin-top: $global-padding;
+}
+.m_grid-item {
+  background: $global-color-primary;
+  border: 1px solid #fff;
+  padding: $global-padding;
+  color: $global-color-white;
 }

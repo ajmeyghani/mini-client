@@ -3,5 +3,5 @@
   @extend .table;
 }
 .e_table tbody > :nth-child(2n-1) {
-  background: #e5e6e7;
+  background: $global-color-primary;
 }

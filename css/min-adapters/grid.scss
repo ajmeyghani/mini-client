@@ -1,5 +1,6 @@
 .l_row {
   @extend .row;
+  margin: 0;
 }
 .l_col {
   @extend .col;
