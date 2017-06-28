@@ -2,24 +2,18 @@
 @import "./mixins";
 @import "./super-reset";
 @import "./helpers";
+@import "./html";
 @import "./layout";
 @import "./type";
+@import "./min-adapters/min";
 // @import "./button2";
 // @import "./button
-@import "./min-interface";
-@import "./button-min-adapter";
-@import "./table-min-adapter";
-@import "./grid-min-adapter";
-
-@import "./components";
+@import "./modules";
 @import "./print";
-
-
 
 // kube
 // @import "../node_modules/kube/src/_scss/variables";
 // @import "../node_modules/kube/src/_scss/mixins";
-
 // @import "../node_modules/kube/src/_scss/components/colors";
 // @import "../node_modules/kube/src/_scss/components/typography";
 // @import "../node_modules/kube/src/_scss/components/grid";
@@ -34,8 +28,3 @@
 // @import "../node_modules/kube/src/_scss/components/print";
 // @import "../node_modules/kube/src/_scss/components/animation";
 // @import "../node_modules/kube/src/_scss/components/messages";
-
-// app
-// @import "./layout";
-// @import "./elements";
-// @import "./components";

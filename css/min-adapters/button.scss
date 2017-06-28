@@ -1,9 +1,9 @@
-@import '../node_modules/min/sass/button';
-.e_btn {
-  border-radius: 0;
+@import '../../node_modules/min/sass/button';
+.e_btn, button {
   @extend .btn;
+  border-radius: 0;
 }
-.e_btn.-primary {
+.e_btn.-primary, button {
   @extend .btn-a;
 }
 
@@ -17,4 +17,5 @@
 
 .e_btn.-small {
   @extend .btn-sm;
+  border-radius: 0;
 }

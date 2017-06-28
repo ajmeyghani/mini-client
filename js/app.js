@@ -34,11 +34,18 @@ app.config(($stateProvider, $locationProvider) => {
     component: 'grid',
   };
 
+  const forms = {
+    name: 'forms',
+    url: '/forms',
+    component: 'forms',
+  };
+
 
   $stateProvider.state(homeState);
   $stateProvider.state(buttons);
   $stateProvider.state(tables);
   $stateProvider.state(grid);
+  $stateProvider.state(forms);
 });
 
 export default app;

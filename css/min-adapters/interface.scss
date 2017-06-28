@@ -13,6 +13,7 @@
 $import-buttons: true;
 $import-tables: true;
 $import-grid: true;
-@import '../node_modules/min/sass/__var-lib.scss';
-@import '../node_modules/min/sass/_grid.scss';
+$import-forms: true;
+@import '../../node_modules/min/sass/__var-lib.scss';
+@import '../../node_modules/min/sass/_grid.scss';
 

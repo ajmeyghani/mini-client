@@ -16,6 +16,9 @@ tables(app);
 import grid from 'grid';
 grid(app);
 
+import forms from 'forms';
+forms(app);
+
 import devinfo from 'devinfo';
 devinfo(app);
 
