@@ -13,7 +13,6 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.4",
     "angular": "^1.6.4",
-    "angular-ui-router": "^1.0.3",
     "bowser": "^1.7.0",
     "kube": "git+ssh://git@github.com/imperavi/kube.git",
     "skeleton-scss": "^2.0.4"
