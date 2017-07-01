@@ -1,33 +1,12 @@
-@import "./variables";
-@import "./mixins";
 @import "./super-reset";
-@import "./helpers";
+@import "./global-variables";
+@import "./global-mixins";
 @import "./html";
-@import "./layout";
 @import "./type";
-// @import "./min-adapters/min";
-// @import "./spec-adapters/spec";
-// @import "./button2";
-// @import "./button
-
-
-// kube
-@import "../node_modules/kube/src/_scss/variables";
-@import "../node_modules/kube/src/_scss/mixins";
-@import "../node_modules/kube/src/_scss/components/colors";
-// @import "../node_modules/kube/src/_scss/components/typography";
-@import "../node_modules/kube/src/_scss/components/grid";
-@import "../node_modules/kube/src/_scss/components/tables";
-@import "../node_modules/kube/src/_scss/components/forms";
-@import "../node_modules/kube/src/_scss/components/buttons";
-@import "../node_modules/kube/src/_scss/components/labels";
-@import "../node_modules/kube/src/_scss/components/icons";
-@import "../node_modules/kube/src/_scss/components/positioning";
-@import "../node_modules/kube/src/_scss/components/sizing";
-@import "../node_modules/kube/src/_scss/components/utils";
-@import "../node_modules/kube/src/_scss/components/print";
-@import "../node_modules/kube/src/_scss/components/animation";
-@import "../node_modules/kube/src/_scss/components/messages";
-
-@import "./modules";
+@import "./helpers";
+@import "./elements/buttons";
+@import "./elements/inputs";
+@import "./elements/tables";
+@import "./elements/grid";
+@import "./animations";
 @import "./print";

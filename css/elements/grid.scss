@@ -1,0 +1,42 @@
+%w-100 {
+  width: 100%;
+}
+
+.l_row {
+  margin: 0;
+  overflow: auto; // needed for proper formed layout
+}
+
+.l_col {
+  float: left;
+}
+
+.l_col12 {
+  @extend %w-100;
+}
+
+$grid-list: (
+  l_col1    8.33%,
+  l_col2   16.66%,
+  l_col3   25%,
+  l_col4   33.33%,
+  l_col5   41.66%,
+  l_col6   50%,
+  l_col7   58.33%,
+  l_col8   66.66%,
+  l_col9   75%,
+  l_col10  83.33%,
+  l_col11  91.66%
+);
+
+@each $value in $grid-list {
+  .#{nth($value, 1)} {
+    width: nth($value, 2);
+  }
+}
+
+@media (max-width:870px) {
+  .l_row .l_col {
+    width: 100%;
+  }
+}

@@ -13,6 +13,7 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.4",
     "angular": "^1.6.4",
+    "bootstrap": "^4.0.0-alpha.6",
     "bowser": "^1.7.0",
     "kube": "git+ssh://git@github.com/imperavi/kube.git",
     "min": "git+ssh://git@github.com/aminmeyghani/min.git",
