@@ -41,15 +41,10 @@ fs.ensureDirSync(`${PROD_DIST}/css`);
 (function() {
   Promise.all([
       fs.copy(path.join('node_modules/angular'), path.join('dist/lib/angular')),
-      fs.copy(path.join('node_modules/@uirouter'), path.join('dist/lib/@uirouter'))
+      fs.copy(path.join('node_modules/@uirouter'), path.join('dist/lib/@uirouter')),
+      fs.copy('favicon.ico', path.join('dist/favicon.ico'))
     ])
-  .then(() => console.log('Copied lib files.'))
-  .catch(console.error);
-}());
-
-(function() {
-  fs.copy('favicon.ico', path.join('dist/favicon.ico'))
-  .then(() => console.log('Copied favicon.ico'))
+  .then(() => console.log('Copied files.'))
   .catch(console.error);
 }());
 
