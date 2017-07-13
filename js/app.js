@@ -1,6 +1,7 @@
 import angular from 'angular';
+import elements from 'elements';
 
-const app = angular.module('app', ['ui.router']);
+const app = angular.module('app', ['ui.router', elements.name]);
 
 app.config(($stateProvider, $locationProvider) => {
   $locationProvider.html5Mode(true);
