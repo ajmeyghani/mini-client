@@ -16,36 +16,14 @@ app.config(($stateProvider, $locationProvider) => {
     },
   };
 
-  const buttons = {
-    name: 'buttons',
-    url: '/buttons',
-    component: 'buttons',
+  const demo = {
+    name: 'demo',
+    url: '/demo/:element',
+    template: '<container></container>',
   };
-
-  const tables = {
-    name: 'tables',
-    url: '/tables',
-    component: 'tables',
-  };
-
-  const grid = {
-    name: 'grid',
-    url: '/grid',
-    component: 'grid',
-  };
-
-  const forms = {
-    name: 'forms',
-    url: '/forms',
-    component: 'forms',
-  };
-
 
   $stateProvider.state(homeState);
-  $stateProvider.state(buttons);
-  $stateProvider.state(tables);
-  $stateProvider.state(grid);
-  $stateProvider.state(forms);
+  $stateProvider.state(demo);
 });
 
 export default app;

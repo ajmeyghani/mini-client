@@ -7,6 +7,9 @@ dataService(app);
 import home from 'home';
 home(app);
 
+import container from 'container';
+container(app);
+
 import buttons from 'buttons';
 buttons(app);
 
